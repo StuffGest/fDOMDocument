@@ -116,7 +116,7 @@ namespace TheSeer\fDOM {
          *
          * @return \DomNodeList
          */
-        public function query($q, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function query($q, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             return $this->ownerDocument->query($q, $ctx ? $ctx : $this, $registerNodeNS);
         }
 
@@ -129,7 +129,7 @@ namespace TheSeer\fDOM {
          *
          * @return mixed
          */
-        public function queryOne($q, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function queryOne($q, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             return $this->ownerDocument->queryOne($q, $ctx ? $ctx : $this, $registerNodeNS);
         }
 
@@ -143,7 +143,7 @@ namespace TheSeer\fDOM {
          * @return \DOMNodeList
          */
 
-        public function select($selector, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function select($selector, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             return $this->ownerDocument->select($selector, $ctx, $registerNodeNS);
         }
 
