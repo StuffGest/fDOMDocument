@@ -91,7 +91,7 @@ namespace TheSeer\fDOM {
          * @return \DOMNodeList
          */
         #[\ReturnTypeWillChange]
-        public function query($q, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function query($q, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             libxml_clear_errors();
             if (version_compare(PHP_VERSION, '5.3.3', '<') || strpos(PHP_VERSION, 'hiphop') || strpos(PHP_VERSION, 'hhvm')) {
                 $rc = parent::query($q, ($ctx instanceof \DOMNode) ? $ctx : $this->doc->documentElement);
@@ -115,7 +115,7 @@ namespace TheSeer\fDOM {
          * @return mixed
          */
         #[\ReturnTypeWillChange]
-        public function evaluate($q, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function evaluate($q, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             libxml_clear_errors();
             if (version_compare(PHP_VERSION, '5.3.3', '<') || strpos(PHP_VERSION, 'hiphop') || strpos(PHP_VERSION, 'hhvm')) {
                 $rc = parent::evaluate($q, ($ctx instanceof \DOMNode) ? $ctx : $this->doc->documentElement);
@@ -137,7 +137,7 @@ namespace TheSeer\fDOM {
          *
          * @return \DOMNode|mixed
          */
-        public function queryOne($q, \DOMNode $ctx = null, $registerNodeNS = true) {
+        public function queryOne($q = null, ?\DOMNode $ctx = null, $registerNodeNS = true) {
             $rc = $this->evaluate($q, $ctx, $registerNodeNS);
             if ($rc instanceof \DOMNodelist) {
                 return $rc->item(0);
@@ -150,7 +150,7 @@ namespace TheSeer\fDOM {
          *
          * @return string
          */
-        public function quote($str) {
+        public static function quote(String $str): String {
             if (strpos($str, '"') === false) {
                 return '"'.$str.'"';
             }
