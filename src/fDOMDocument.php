@@ -40,6 +40,7 @@
  */
 
 namespace TheSeer\fDOM {
+
     use TheSeer\fDOM\CSS\Translator;
 
     /**
@@ -137,6 +138,7 @@ namespace TheSeer\fDOM {
          *
          * @return bool|mixed
          */
+        #[\ReturnTypeWillChange]
         public function load($fname, $options = LIBXML_NONET) {
             if ($fname === '') {
                 throw new fDOMException('empty filename is not allowed', fDOMException::ParseError);
@@ -161,6 +163,7 @@ namespace TheSeer\fDOM {
          *
          * @return boolean
          */
+        #[\ReturnTypeWillChange]
         public function loadXML($source, $options = LIBXML_NONET) {
             if ($source === '') {
                 throw new fDOMException('empty string not allowed', fDOMException::ParseError);
@@ -185,6 +188,7 @@ namespace TheSeer\fDOM {
          *
          * @return boolean
          */
+        #[\ReturnTypeWillChange]
         public function loadHTMLFile($fname, $options = NULL) {
             if ($fname === '') {
                 throw new fDOMException('empty filename is not allowed', fDOMException::ParseError);
@@ -216,6 +220,7 @@ namespace TheSeer\fDOM {
          *
          * @return boolean
          */
+        #[\ReturnTypeWillChange]
         public function loadHTML($source, $options = NULL) {
             if ($source === '') {
                 throw new fDOMException('empty string not allowed', fDOMException::ParseError);
@@ -247,7 +252,7 @@ namespace TheSeer\fDOM {
          * @return integer bytes saved
          */
         #[\ReturnTypeWillChange]
-        public function save($filename, $options = NULL) {
+        public function save($filename, $options = 0) {
             $tmp = parent::save($filename, $options);
             if (!$tmp) {
                 throw new fDOMException("Saving XML to file '$filename' failed", fDOMException::SaveError);
@@ -265,7 +270,7 @@ namespace TheSeer\fDOM {
          * @return string html content
          */
         #[\ReturnTypeWillChange]
-        public function saveHTML(\DOMNode $node = NULL) {
+        public function saveHTML(?\DOMNode $node = NULL) {
             if (version_compare(PHP_VERSION, '5.3.6', '<') && $node !== NULL) {
                 throw new fDOMException('Passing a context node requires PHP 5.3.6+', fDOMException::SaveError);
             }
@@ -306,7 +311,7 @@ namespace TheSeer\fDOM {
          * @return string serialized XML
          */
         #[\ReturnTypeWillChange]
-        public function saveXML(\DOMNode $node = NULL, $options = NULL) {
+        public function saveXML(?\DOMNode $node = NULL, $options = NULL) {
             try {
                 if ($options !== null) {
                     $tmp = parent::saveXML($node, $options);
@@ -369,7 +374,7 @@ namespace TheSeer\fDOM {
          *
          * @return \DOMNodeList
          */
-        public function query($q, \DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
+        public function query($q, ?\DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
             if (is_null($this->xp)) {
                 $this->getDOMXPath();
             }
@@ -385,7 +390,7 @@ namespace TheSeer\fDOM {
          *
          * @return fDOMNode
          */
-        public function queryOne($q, \DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
+        public function queryOne($q, ?\DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
             if (is_null($this->xp)) {
                 $this->getDOMXPath();
             }
@@ -417,7 +422,7 @@ namespace TheSeer\fDOM {
          *
          * @return \DOMNodeList
          */
-        public function select($selector, \DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
+        public function select($selector, ?\DOMNode $ctx = NULL, $registerNodeNS = TRUE) {
             $translator = new Translator();
             $xpath = $translator->translate($selector);
             if ($ctx !== NULL) {
