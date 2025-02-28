@@ -1,13 +1,13 @@
 {
-    "name": "theseer/fdomdocument",
+    "name": "stuffgest/fdomdocument",
     "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
     "homepage": "https://github.com/theseer/fDOMDocument",
     "license": "BSD-3-Clause",
     "authors": [
         {
-            "name": "Arne Blankerts",
-            "email": "arne@blankerts.de",
-            "role": "lead"
+            "name" : "Arne Blankerts (initial version)/StuffGest(fork)",
+            "email" : "stuffgest@gmail.com",
+            "role" : "Developer"
         }
     ],
     "support": {
